@@ -39,7 +39,14 @@ const auth = getAuth(app);
 
 const signInWithGoogle = () => {
   signInWithPopup(auth, new GoogleAuthProvider())
-  .then((result) => {})
+  .then((result) => {
+    const user = result.user 
+    setUserData(User)
+    setIsSignedIn(true)
+  })
+  .catch((error) => {
+    console.log(error.message)
+  })
 }
 
 
@@ -47,6 +54,10 @@ const signInWithGoogle = () => {
   return (
     <div className="App">
       <h1>Chat App</h1>
+
+      {isSignedIn && <h2> You are signed in!</h2>}
+      {!isSignedIn && <h2> You are not signed in!</h2>}
+      <button onClick={signInWithGoogle}>Sign in the with Google</button>
     </div>
   );
 }
