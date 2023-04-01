@@ -21,16 +21,26 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app)
 const messagesRef = ref(database, 'messages')
 
-const [messages, setMessages] = useState([])
-const [isSignedIn, setSignedIn] = useState(false);
-const [userdata, setUserData] = useState([]);
 
-let a = ""
 
 
 
 function App() {
+//The React Hookd
 
+const [messages, setMessages] = useState([])
+const [isSignedIn, setSignedIn] = useState(false);
+const [userdata, setUserData] = useState([]);
+
+//Set up the auth object
+
+const auth = getAuth(app);
+
+
+const signInWithGoogle = () => {
+  signInWithPopup(auth, new GoogleAuthProvider())
+  .then((result) => {})
+}
 
 
 
