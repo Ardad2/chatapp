@@ -1,6 +1,27 @@
 import {initializeApp} from 'firebase';
 import { getDatabase, ref, set, onValue } from 'firebase/database';
 
+import { getAuth, signInWithPopup, GoogleAuthProvider} from 'firebase/auth';
+
+import {useEffect, useState, useRef } from "react"
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBJAUAaipltiTdoIIqD2FjNO7lMWWcJFWY",
+  authDomain: "chatapp-a2514.firebaseapp.com",
+  databaseURL: "https://chatapp-a2514-default-rtdb.firebaseio.com",
+  projectId: "chatapp-a2514",
+  storageBucket: "chatapp-a2514.appspot.com",
+  messagingSenderId: "603915826800",
+  appId: "1:603915826800:web:04d1ec577bd7225f7c26b5"
+};
+
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app)
+const messagesRef = ref(database, 'messages')
+
+
+
 function App() {
   return (
     <div className="App">
