@@ -1,9 +1,10 @@
+import {useEffect, useState, useRef } from "react"
+
 import {initializeApp} from 'firebase';
 import { getDatabase, ref, set, onValue } from 'firebase/database';
 
 import { getAuth, signInWithPopup, GoogleAuthProvider} from 'firebase/auth';
 
-import {useEffect, useState, useRef } from "react"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -20,9 +21,19 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app)
 const messagesRef = ref(database, 'messages')
 
+const [messages, setMessages] = useState([])
+const [isSignedIn, setSignedIn] = useState(false);
+const [userdata, setUserData] = useState([]);
+
+let a = ""
+
 
 
 function App() {
+
+
+
+
   return (
     <div className="App">
       <h1>Chat App</h1>
