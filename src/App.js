@@ -1,7 +1,9 @@
 import {useEffect, useState, useRef } from "react"
 
-import {initializeApp} from 'firebase';
+import {initializeApp} from 'firebase/app';
 import { getDatabase, ref, set, onValue } from 'firebase/database';
+import { getFirestore } from 'firebase/firestore/lite';
+
 
 import { getAuth, signInWithPopup, GoogleAuthProvider} from 'firebase/auth';
 
@@ -41,8 +43,8 @@ const signInWithGoogle = () => {
   signInWithPopup(auth, new GoogleAuthProvider())
   .then((result) => {
     const user = result.user 
-    setUserData(User)
-    setIsSignedIn(true)
+    setUserData(user)
+    setSignedIn(true)
   })
   .catch((error) => {
     console.log(error.message)
@@ -55,7 +57,7 @@ const signInWithGoogle = () => {
     <div className="App">
       <h1>Chat App</h1>
 
-      {isSignedIn && <h2> You are signed in!</h2>}
+      {isSignedIn && <h2> Welcome user.currentUser.name</h2>}
       {!isSignedIn && <h2> You are not signed in!</h2>}
       <button onClick={signInWithGoogle}>Sign in the with Google</button>
     </div>
